@@ -22,7 +22,7 @@
 
 
 - ## Wings
-  - Ability to cosplay flappy bird.
+  - Ability to cosplay flappy bird. Consumes feathers in order to fly.
 
   - ![Recipe](https://cdn.modrinth.com/data/cached_images/2d6abc936bbe99cafadcf6b2616186271fb4c327.png)
   - **Supports two types of feathers:**
