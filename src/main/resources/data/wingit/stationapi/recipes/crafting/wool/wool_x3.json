@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "fs",
+    "sf"
+  ],
+  "key": {
+    "f": {
+      "item": "wingit:dense_feather"
+    },
+    "s": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "minecraft:wool",
+    "count": 3
+  }
+}

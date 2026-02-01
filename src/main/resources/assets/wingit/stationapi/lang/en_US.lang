@@ -1,0 +1,4 @@
+# @ is a shorthand for the current mod id, which is wingit. E.g: tile.@.redclay.name
+item.@.wings.name = Wings
+item.@.feather_bag.name = Feather Bag
+item.@.dense_feather.name = Dense Feather

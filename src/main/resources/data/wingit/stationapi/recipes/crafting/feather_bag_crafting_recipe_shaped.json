@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " s ",
+    "lfl",
+    "lll"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:string"
+    },
+    "f": {
+      "item": "wingit:dense_feather"
+    },
+    "l": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "wingit:feather_bag"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "wingit",
+  "version": "${version}",
+
+  "name": "Wing it!",
+  "description": "Adds (somewhat) balanced wings to beta minecraft!",
+  "authors": [
+    "Kote"
+  ],
+  "contact": {
+    "homepage": "https://glass-launcher.net/",
+    "sources": "https://github.com/calmilamsy/stationapi-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/wingit/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "stationapi:event_bus": [
+      "io.github.kotenahui.wingit.WingIt"
+    ],
+    "stationapi:event_bus_client": [
+    ],
+    "stationapi:event_bus_server": [
+    ]
+  },
+  "mixins": [
+    "wingit.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  }
+}

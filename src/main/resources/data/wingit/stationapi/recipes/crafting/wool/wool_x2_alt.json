@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "fsf",
+    "s s",
+    "fsf"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:string"
+    },
+    "f": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "minecraft:wool",
+    "count": 2
+  }
+}
