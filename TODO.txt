@@ -1,0 +1,2 @@
+- check out what's up with issue #4
+- expand on how wing's feather consumption works
