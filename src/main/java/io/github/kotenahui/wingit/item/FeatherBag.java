@@ -23,11 +23,6 @@ public class FeatherBag extends TemplateItem {
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         //updateTexture(stack);
-        if (GetState(stack) == null || stack.getDamage() >= 128) {
-            stack.setDamage(128);
-            SetState("empty", stack);
-            this.setTextureId(getTextureId(stack));
-        }
     }
 
     @Override
@@ -39,6 +34,11 @@ public class FeatherBag extends TemplateItem {
 
     @Override
     public ItemStack use(ItemStack stack, World world, PlayerEntity user){
+        if (GetState(stack) == null || stack.getDamage() >= 128) {
+            stack.setDamage(128);
+            SetState("empty", stack);
+            this.setTextureId(getTextureId(stack));
+        }
         if (user.isSneaking()) {                                        //Take out
             if (stack.getDamage() < 128) {
                 takeOut(stack, world, user);
