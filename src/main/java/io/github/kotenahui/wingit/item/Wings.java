@@ -90,26 +90,26 @@ public class Wings extends TemplateArmorItem implements ArmorTextureProvider
 
         if (selectedItem != null) {
 
-        if (selectedItem.getItem() == WingIt.item_FEATHER_BAG) {
-            FeatherBag bag = (FeatherBag) selectedItem.getItem(); //Selected feather
+                if (selectedItem.getItem() == WingIt.item_FEATHER_BAG) {
+                    FeatherBag bag = (FeatherBag) selectedItem.getItem(); //Selected feather
 
-            if (selectedItem.getDamage() < 128) {
-                if (bag.GetState(selectedItem).equals("feather")) {
-                    selectedItem.damage(1, entity);
+                    if (selectedItem.getDamage() < 128) {
+                        if (bag.GetState(selectedItem).equals("feather")) {
+                            selectedItem.damage(1, entity);
+                            return "feather";
+                        } else if (bag.GetState(selectedItem).equals("dense_feather")) {
+                            selectedItem.damage(2, entity);
+                            return "dense_feather";
+                        }
+                    }
+                } else if (selectedItem.getItem() == Item.FEATHER) { //Selected feather
+                    ((ClientPlayerEntity) entity).inventory.removeStack(((ClientPlayerEntity) entity).inventory.selectedSlot, 1);
                     return "feather";
-                } else if (bag.GetState(selectedItem).equals("dense_feather")) {
-                    selectedItem.damage(2, entity);
+                } else if (selectedItem.getItem() == WingIt.item_DENSE_FEATHER) { //Selected dense feather
+                    ((ClientPlayerEntity) entity).inventory.removeStack(((ClientPlayerEntity)entity).inventory.selectedSlot, 1);
                     return "dense_feather";
                 }
-            }
-        } else if (selectedItem.getItem() == Item.FEATHER) { //Selected feather
-            ((ClientPlayerEntity) entity).inventory.removeStack(((ClientPlayerEntity) entity).inventory.selectedSlot, 1);
-            return "feather";
-        } else if (selectedItem.getItem() == WingIt.item_DENSE_FEATHER) { //Selected dense feather
-            ((ClientPlayerEntity) entity).inventory.removeStack(((ClientPlayerEntity) entity).inventory.selectedSlot, 1);
-            return "dense_feather";
         }
-}
         else if (((ClientPlayerEntity)entity).isSneaking){ //Feather
                 if (((ClientPlayerEntity) entity).inventory.remove(Item.FEATHER)) {
                         return "feather"
