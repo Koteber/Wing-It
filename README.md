@@ -28,6 +28,8 @@
   - **Supports two types of feathers:**
     - Normal feather - Can easily climb vertically, bad for horizontal transportation.
     - Dense feather - Unsustainable height, great horizontal speed.
+  - No shift - Consumes *Dense feather*
+  - With shift - Consumes normal *Feather*
 
 ## 2 New wool block recipes
 
