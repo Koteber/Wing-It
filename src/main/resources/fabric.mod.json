@@ -9,8 +9,8 @@
     "Kote"
   ],
   "contact": {
-    "homepage": "https://glass-launcher.net/",
-    "sources": "https://github.com/calmilamsy/stationapi-example-mod"
+    "homepage": "https://modrinth.com/mod/wing-it!",
+    "sources": "https://github.com/Koteber/Wing-It/tree/main"
   },
 
   "license": "CC0-1.0",
@@ -31,6 +31,7 @@
   ],
 
   "depends": {
-    "minecraft": "1.0.0-beta.7.3"
+    "minecraft": "1.0.0-beta.7.3",
+    "stationapi": ">=2.0.0-alpha.5"
   }
 }

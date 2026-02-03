@@ -22,7 +22,7 @@ public class FeatherBag extends TemplateItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        //updateTexture(stack);
+        updateItem(stack);
     }
 
     @Override
@@ -34,7 +34,8 @@ public class FeatherBag extends TemplateItem {
 
     @Override
     public ItemStack use(ItemStack stack, World world, PlayerEntity user){
-        if (GetState(stack) == null || stack.getDamage() >= 128) {
+        if (stack.getDamage() == 0 && GetState(stack).isEmpty()) {
+
             stack.setDamage(128);
             SetState("empty", stack);
             this.setTextureId(getTextureId(stack));
@@ -49,7 +50,6 @@ public class FeatherBag extends TemplateItem {
                 putIn(stack, world, user);
             }
         }
-        updateTexture(stack);
         return stack;
     }
 
@@ -75,7 +75,6 @@ public class FeatherBag extends TemplateItem {
         this.setTextureId(getTextureId(stack));
     }
     public void putIn(ItemStack stack, World world, PlayerEntity user) {
-        WingIt.LOGGER.info("putIn start state: " +GetState(stack));
         if (GetState(stack).equals("empty")) {                      // Empty
             if (user.inventory.remove(WingIt.item_DENSE_FEATHER.id)) {
                 SetState("dense_feather", stack);
@@ -97,7 +96,6 @@ public class FeatherBag extends TemplateItem {
 
         else if (GetState(stack).equals("dense_feather")) {         // Dense Feather
             if (user.inventory.remove(WingIt.item_DENSE_FEATHER.id)) {
-                WingIt.LOGGER.info("inside inside df");
                 stack.setDamage(stack.getDamage() - 2);
             }
         }
@@ -107,59 +105,6 @@ public class FeatherBag extends TemplateItem {
                 stack.setDamage(stack.getDamage() - 1);
             }
         }*/
-    }
-    /*public void updateTextureold(ItemStack stack) {
-        if (GetState(stack).equals("empty")) {                                               // Empty
-            this.setTexture(WingIt.NAMESPACE.id("item/feather_bag_empty"));
-        }
-
-        else if (GetState(stack).equals("feather")) {                                        // Feather
-            if (stack.getDamage() > 64) {
-                this.setTexture(WingIt.NAMESPACE.id("item/feather_bag_feathers_half"));
-            }
-            else {
-                this.setTexture(WingIt.NAMESPACE.id("item/feather_bag_feathers_full"));
-            }
-        }
-
-        else if (GetState(stack).equals("dense_feather")) {                                  // Dense Feather
-            if (stack.getDamage() > 64) {
-                this.setTexture(WingIt.NAMESPACE.id("item/feather_bag_dense_feathers_half"));
-            }
-            else {
-                this.setTexture(WingIt.NAMESPACE.id("item/feather_bag_dense_feathers_full"));
-            }
-        }
-    } */
-
-    public void updateTexture(ItemStack stack) {
-        if (GetState(stack).equals("empty")) {                                               // Empty
-            //stack.getItem().setTextureId(WingIt.texture_FEATHER_BAG_EMPTY);
-            //this.setTextureId(WingIt.texture_FEATHER_BAG_EMPTY);
-            this.setTextureId(getTextureId(stack));
-        }
-
-        else if (GetState(stack).equals("feather")) {                                        // Feather
-            if (stack.getDamage() > 64) {
-                //stack.getItem().setTextureId(WingIt.texture_FEATHER_BAG_FEATHER_HALF);
-                //this.setTextureId(WingIt.texture_FEATHER_BAG_FEATHER_HALF);
-            }
-            else {
-                //stack.getItem().setTextureId(WingIt.texture_FEATHER_BAG_FEATHER_FULL);
-                //this.setTextureId(WingIt.texture_FEATHER_BAG_FEATHER_FULL);
-            }
-        }
-
-        else if (GetState(stack).equals("dense_feather")) {                                  // Dense Feather
-            if (stack.getDamage() > 64) {
-                //stack.getItem().setTextureId(WingIt.texture_FEATHER_BAG_DENSE_FEATHER_HALF);
-                //this.setTextureId(WingIt.texture_FEATHER_BAG_DENSE_FEATHER_HALF);
-            }
-            else {
-                //stack.getItem().setTextureId(WingIt.texture_FEATHER_BAG_DENSE_FEATHER_FULL);
-                //this.setTextureId(WingIt.texture_FEATHER_BAG_DENSE_FEATHER_FULL);
-            }
-        }
     }
 
     public void SetState(String state, ItemStack stack) {
@@ -191,4 +136,9 @@ public class FeatherBag extends TemplateItem {
         }
         return WingIt.texture_FEATHER_BAG_EMPTY;
     }
+    private void updateItem(ItemStack stack) {
+        if (stack.getDamage() >= 128) SetState("empty", stack);
+        if (GetState(stack).equals("empty"))
+            this.setTextureId(getTextureId(stack));
+        }
 }

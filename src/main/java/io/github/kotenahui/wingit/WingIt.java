@@ -5,7 +5,9 @@ import io.github.kotenahui.wingit.item.Wings;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.mine_diver.unsafeevents.listener.EventListener;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.event.mod.InitEvent;
@@ -17,6 +19,8 @@ import net.modificationstation.stationapi.api.util.Namespace;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @SuppressWarnings("unused")
 public class WingIt {
@@ -63,5 +67,50 @@ public class WingIt {
             //endregion
 
         //endregion
+    }
+    public static int indexOf(int itemId, PlayerInventory inventory) {
+        for(int i = 0; i < inventory.main.length; i++) {
+            if (inventory.main[i] != null && inventory.main[i].itemId == itemId) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+    public static int stackIndex(ItemStack stack, PlayerInventory inventory) {
+        for(int i = 0; i < inventory.main.length; i++) {
+            if (inventory.main[i] != null && inventory.main[i] == stack) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static boolean removeAtSlot(int slot, PlayerInventory inventory) {
+        if (inventory.main[slot] == null) {
+            return false;
+        }
+        if (--inventory.main[slot].count <= 0) {
+            inventory.main[slot] = null;
+        }
+        return true;
+    }
+    public static int[] indexesOf(int itemId, PlayerInventory inventory) {
+        ArrayList<Integer> array0 = new ArrayList<>();
+        for(int i = 0; i < inventory.main.length; i++) {
+            if (inventory.main[i] != null && inventory.main[i].itemId == itemId) {
+                array0.add(i);
+            }
+        }
+        Integer[] array1 = array0.toArray(new Integer[array0.size()]);
+        return Arrays.stream(array1).mapToInt(Integer::intValue).toArray();
+    }
+    public static ItemStack[] stacksOutOfIndexes(int[] indexes, PlayerInventory inventory) {
+        ArrayList<ItemStack> stacks0 = new ArrayList<>();
+        for (int i = 0; i < inventory.main.length; i++) {
+            if (inventory.main[i] != null) {
+                stacks0.add(inventory.main[i]);
+            }
+        }
+        return stacks0.toArray(new ItemStack[stacks0.size()]);
     }
 }
