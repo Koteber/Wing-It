@@ -88,7 +88,7 @@ public class Wings extends TemplateArmorItem implements ArmorTextureProvider
     public String tryConsumeFeather(Entity entity) {
         ItemStack selectedItem = ((ClientPlayerEntity) entity).inventory.getSelectedItem();
 
-        if (selectedItem == null) return null;
+        if (selectedItem != null) {
 
         if (selectedItem.getItem() == WingIt.item_FEATHER_BAG) {
             FeatherBag bag = (FeatherBag) selectedItem.getItem(); //Selected feather
@@ -109,6 +109,7 @@ public class Wings extends TemplateArmorItem implements ArmorTextureProvider
             ((ClientPlayerEntity) entity).inventory.removeStack(((ClientPlayerEntity) entity).inventory.selectedSlot, 1);
             return "dense_feather";
         }
+}
         else if (((ClientPlayerEntity)entity).isSneaking){ //Feather
                 if (((ClientPlayerEntity) entity).inventory.remove(Item.FEATHER)) {
                         return "feather"
